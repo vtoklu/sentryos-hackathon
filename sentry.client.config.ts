@@ -17,6 +17,9 @@ Sentry.init({
   // in development and sample at a lower rate in production
   replaysSessionSampleRate: 0.1,
 
+  // Enable structured logging
+  enableLogs: true,
+
   // You can remove this option if you're not planning to use the Sentry Session Replay feature:
   integrations: [
     Sentry.replayIntegration({
@@ -24,5 +27,7 @@ Sentry.init({
       maskAllText: true,
       blockAllMedia: true,
     }),
+    // Capture console.warn and console.error logs
+    Sentry.consoleLoggingIntegration({ levels: ["warn", "error"] }),
   ],
 });
